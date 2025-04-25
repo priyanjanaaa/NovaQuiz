@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAVASCRIPT</title>
+</head>
+<style>
+  body{
+      background-color: #2E003E;
+      color:#FFD1DC;
+    }
+  .questions{
+    margin-top: 60px;
+  }
+  button{
+    border-radius: 6px;
+    background-color: #FF1493;
+    color:white;
+    border:none;
+    height:30px;
+  }
+
+  button:hover{
+    cursor: pointer;
+  }
+
+
+  .blurred{
+    pointer-events: none;
+    filter:blur(5px);
+    user-select: none;
+  }
+
+  .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFD1DC;
+      color: #2E003E;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-size: 1.2rem;
+      font-weight: bold;
+      z-index: 10;
+      display: none;
+    }
+    #btn{
+      margin-left: 50px;
+    }
+    #timer{
+      margin-left: 1190px;
+    }
+</style>
+<body>
+  <body>
+    <h2 id="timer">15:00</h2>
+    <div class="questions">
+      <p>1. Which keyword is used to declare a constant in JavaScript?<br>
+        <input type="radio" name="q0" value="let">let<br>
+        <input type="radio" name="q0" value="const">const<br>
+        <input type="radio" name="q0" value="var">var<br>
+        <input type="radio" name="q0" value="constant">constant<br>
+      </p>
+  
+      <p>2. What does `NaN` stand for in JavaScript?<br>
+        <input type="radio" name="q1" value="Not a Null">Not a Null<br>
+        <input type="radio" name="q1" value="Not a Number">Not a Number<br>
+        <input type="radio" name="q1" value="No assigned Name">No assigned Name<br>
+        <input type="radio" name="q1" value="Number and Null">Number and Null<br>
+      </p>
+  
+      <p>3. Which of the following is not a JavaScript data type?<br>
+        <input type="radio" name="q2" value="String">String<br>
+        <input type="radio" name="q2" value="Boolean">Boolean<br>
+        <input type="radio" name="q2" value="Float">Float<br>
+        <input type="radio" name="q2" value="Undefined">Undefined<br>
+      </p>
+  
+      <p>4. How do you write a comment in JavaScript?<br>
+        <input type="radio" name="q3" value="//">`//`<br>
+        <input type="radio" name="q3" value="<!-- -->">&lt;!-- --&gt;<br>
+        <input type="radio" name="q3" value="##">##<br>
+        <input type="radio" name="q3" value="--">--<br>
+      </p>
+  
+      <p>5. What is the output of `typeof null`?<br>
+        <input type="radio" name="q4" value="null">null<br>
+        <input type="radio" name="q4" value="undefined">undefined<br>
+        <input type="radio" name="q4" value="object">object<br>
+        <input type="radio" name="q4" value="boolean">boolean<br>
+      </p>
+  
+      <p>6. Which built-in method removes the last element from an array?<br>
+        <input type="radio" name="q5" value="pop()">pop()<br>
+        <input type="radio" name="q5" value="push()">push()<br>
+        <input type="radio" name="q5" value="shift()">shift()<br>
+        <input type="radio" name="q5" value="remove()">remove()<br>
+      </p>
+  
+      <p>7. Which symbol is used for strict equality comparison in JavaScript?<br>
+        <input type="radio" name="q6" value="==">==<br>
+        <input type="radio" name="q6" value="=">=<br>
+        <input type="radio" name="q6" value="===">===<br>
+        <input type="radio" name="q6" value="!==">!==<br>
+      </p>
+  
+      <p>8. Which method converts JSON to a JavaScript object?<br>
+        <input type="radio" name="q7" value="JSON.parse()">JSON.parse()<br>
+        <input type="radio" name="q7" value="JSON.stringify()">JSON.stringify()<br>
+        <input type="radio" name="q7" value="JSON.objectify()">JSON.objectify()<br>
+        <input type="radio" name="q7" value="JSON.convert()">JSON.convert()<br>
+      </p>
+  
+      <p>9. How can you declare a function in JavaScript?<br>
+        <input type="radio" name="q8" value="function myFunc() {}">function myFunc() {}<br>
+        <input type="radio" name="q8" value="def myFunc() {}">def myFunc() {}<br>
+        <input type="radio" name="q8" value="fun myFunc() {}">fun myFunc() {}<br>
+        <input type="radio" name="q8" value="function: myFunc() {}">function: myFunc() {}<br>
+      </p>
+  
+      <p>10. Which object is used for console logging in JavaScript?<br>
+        <input type="radio" name="q9" value="print">print<br>
+        <input type="radio" name="q9" value="log">log<br>
+        <input type="radio" name="q9" value="console">console<br>
+        <input type="radio" name="q9" value="console.log">console.log<br>
+      </p>
+  
+      <button onclick="check()">Submit</button>
+    </div>
+  
+    <div class="popup">
+      <p id="result"></p>
+      <button onclick="closee()" id="btn">Close</button>
+    </div>
+  </body>
+  
+ 
+
+  
+  
+</body>
+
+<script>
+  const questions = [
+  { question: "Which keyword is used to declare a constant in JavaScript?", correctAnswer: "const" },
+  { question: "What does `NaN` stand for in JavaScript?", correctAnswer: "Not a Number" },
+  { question: "Which of the following is not a JavaScript data type?", correctAnswer: "Float" },
+  { question: "How do you write a comment in JavaScript?", correctAnswer: "//" },
+  { question: "What is the output of `typeof null`?", correctAnswer: "object" },
+  { question: "Which built-in method removes the last element from an array?", correctAnswer: "pop()" },
+  { question: "Which symbol is used for strict equality comparison in JavaScript?", correctAnswer: "===" },
+  { question: "Which method converts JSON to a JavaScript object?", correctAnswer: "JSON.parse()" },
+  { question: "How can you declare a function in JavaScript?", correctAnswer: "function myFunc() {}" },
+  { question: "Which object is used for console logging in JavaScript?", correctAnswer: "console.log" }
+];
+
+
+
+ 
+
+
+  function check(){
+    var score=0;
+    var popbox=document.querySelector(".questions")
+    var popup=document.querySelector(".popup")
+
+    questions.forEach((question,index)=>{
+      var selected=document.querySelector(`input[name='q${index}']:checked`);
+      if(selected && selected.value==question.correctAnswer){
+        score++;
+      }
+    });
+    popbox.classList.add("blurred")
+    popup.style.display="block"
+    
+    document.getElementById("result").innerHTML=`Your score is ${score}/10`;
+  }
+
+  function closee(){
+    var popbox=document.querySelector(".questions")
+    var popup=document.querySelector(".popup")
+    popbox.classList.remove("blurred");
+    popup.style.display="none"
+  }
+
+  let timeleft=15*60;
+
+  var timerdisplay=document.getElementById("timer")
+  const countdown=setInterval(()=>{
+    let minutes=Math.floor(timeleft/60)
+    let seconds=timeleft%60
+    timerdisplay.textContent=`${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+
+    if(timeleft==0){
+      clearInterval(countdown);
+      check();
+    }
+    timeleft--;
+  },1000)
+</script>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>REACT</title>
+  <style>
+    body {
+      background-color: #2E003E;
+      color: #FFD1DC;
+    }
+    .questions {
+      margin-top: 60px;
+    }
+    button {
+      border-radius: 6px;
+      background-color: #FF1493;
+      color: white;
+      border: none;
+      height: 30px;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+    .blurred {
+      pointer-events: none;
+      filter: blur(5px);
+      user-select: none;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFD1DC;
+      color: #2E003E;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-size: 1.2rem;
+      font-weight: bold;
+      z-index: 10;
+      display: none;
+    }
+    #btn {
+      margin-left: 50px;
+    }
+    #timer {
+      margin-left: 1190px;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="timer">15:00</h2>
+  <div class="questions">
+    <p>1. What is the command to create a new React application using Create React App?<br>
+      <input type="radio" name="q0" value="npx create-react-app">npx create-react-app<br>
+      <input type="radio" name="q0" value="npm install react-app">npm install react-app<br>
+      <input type="radio" name="q0" value="create-react">create-react<br>
+      <input type="radio" name="q0" value="react-new">react-new<br>
+    </p>
+
+    <p>2. What is a component in React?<br>
+      <input type="radio" name="q1" value="A function or class that returns JSX">A function or class that returns JSX<br>
+      <input type="radio" name="q1" value="A CSS module">A CSS module<br>
+      <input type="radio" name="q1" value="A Redux store">A Redux store<br>
+      <input type="radio" name="q1" value="An HTML file">An HTML file<br>
+    </p>
+
+    <p>3. Which hook is used to manage state in a functional component?<br>
+      <input type="radio" name="q2" value="useEffect">useEffect<br>
+      <input type="radio" name="q2" value="useReducer">useReducer<br>
+      <input type="radio" name="q2" value="useState">useState<br>
+      <input type="radio" name="q2" value="useContext">useContext<br>
+    </p>
+
+    <p>4. What does JSX stand for?<br>
+      <input type="radio" name="q3" value="JavaScript XML">JavaScript XML<br>
+      <input type="radio" name="q3" value="Java Standard Extension">Java Standard Extension<br>
+      <input type="radio" name="q3" value="JSON Syntax Extension">JSON Syntax Extension<br>
+      <input type="radio" name="q3" value="Java Syntax XML">Java Syntax XML<br>
+    </p>
+
+    <p>5. How do you pass data from a parent component to a child component?<br>
+      <input type="radio" name="q4" value="Through props">Through props<br>
+      <input type="radio" name="q4" value="Through state">Through state<br>
+      <input type="radio" name="q4" value="Through Redux">Through Redux<br>
+      <input type="radio" name="q4" value="Through events">Through events<br>
+    </p>
+
+    <p>6. What is the purpose of useEffect in React?<br>
+      <input type="radio" name="q5" value="To handle forms">To handle forms<br>
+      <input type="radio" name="q5" value="To fetch data or run side effects">To fetch data or run side effects<br>
+      <input type="radio" name="q5" value="To define components">To define components<br>
+      <input type="radio" name="q5" value="To manage global state">To manage global state<br>
+    </p>
+
+    <p>7. What is the virtual DOM?<br>
+      <input type="radio" name="q6" value="An in-memory representation of the real DOM">An in-memory representation of the real DOM<br>
+      <input type="radio" name="q6" value="A new HTML tag">A new HTML tag<br>
+      <input type="radio" name="q6" value="An actual copy of the real DOM">An actual copy of the real DOM<br>
+      <input type="radio" name="q6" value="None of the above">None of the above<br>
+    </p>
+
+    <p>8. Which method is used to handle events in React?<br>
+      <input type="radio" name="q7" value="Using addEventListener">Using addEventListener<br>
+      <input type="radio" name="q7" value="Using HTML onclick">Using HTML onclick<br>
+      <input type="radio" name="q7" value="Using camelCase event names like onClick">Using camelCase event names like onClick<br>
+      <input type="radio" name="q7" value="React doesn’t support events">React doesn’t support events<br>
+    </p>
+
+    <p>9. What will `useState` return?<br>
+      <input type="radio" name="q8" value="A state variable and a function to update it">A state variable and a function to update it<br>
+      <input type="radio" name="q8" value="Only a state variable">Only a state variable<br>
+      <input type="radio" name="q8" value="Only a setter function">Only a setter function<br>
+      <input type="radio" name="q8" value="A DOM element">A DOM element<br>
+    </p>
+
+    <p>10. What is the default port for running a React app locally?<br>
+      <input type="radio" name="q9" value="3000">3000<br>
+      <input type="radio" name="q9" value="8000">8000<br>
+      <input type="radio" name="q9" value="5000">5000<br>
+      <input type="radio" name="q9" value="8080">8080<br>
+    </p>
+
+    <button onclick="check()">Submit</button>
+  </div>
+
+  <div class="popup">
+    <p id="result"></p>
+    <button onclick="closee()" id="btn">Close</button>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "What is the command to create a new React application using Create React App?", correctAnswer: "npx create-react-app" },
+      { question: "What is a component in React?", correctAnswer: "A function or class that returns JSX" },
+      { question: "Which hook is used to manage state in a functional component?", correctAnswer: "useState" },
+      { question: "What does JSX stand for?", correctAnswer: "JavaScript XML" },
+      { question: "How do you pass data from a parent component to a child component?", correctAnswer: "Through props" },
+      { question: "What is the purpose of useEffect in React?", correctAnswer: "To fetch data or run side effects" },
+      { question: "What is the virtual DOM?", correctAnswer: "An in-memory representation of the real DOM" },
+      { question: "Which method is used to handle events in React?", correctAnswer: "Using camelCase event names like onClick" },
+      { question: "What will `useState` return?", correctAnswer: "A state variable and a function to update it" },
+      { question: "What is the default port for running a React app locally?", correctAnswer: "3000" }
+    ];
+
+    function check() {
+      var score = 0;
+      var popbox = document.querySelector(".questions");
+      var popup = document.querySelector(".popup");
+
+      questions.forEach((question, index) => {
+        var selected = document.querySelector(`input[name='q${index}']:checked`);
+        if (selected && selected.value === question.correctAnswer) {
+          score++;
+        }
+      });
+
+      popbox.classList.add("blurred");
+      popup.style.display = "block";
+      document.getElementById("result").innerHTML = `Your score is ${score}/10`;
+    }
+
+    function closee() {
+      var popbox = document.querySelector(".questions");
+      var popup = document.querySelector(".popup");
+      popbox.classList.remove("blurred");
+      popup.style.display = "none";
+    }
+
+    let timeleft = 15 * 60;
+    var timerdisplay = document.getElementById("timer");
+
+    const countdown = setInterval(() => {
+      let minutes = Math.floor(timeleft / 60);
+      let seconds = timeleft % 60;
+      timerdisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      if (timeleft === 0) {
+        clearInterval(countdown);
+        check();
+      }
+
+      timeleft--;
+    }, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPP</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body{
+      background-color: #2E003E;
+      color:#FFD1DC;
+    }
+
+    button{
+      border-radius: 6px;
+      background-color: #FF1493;
+      color:white;
+      border:none;
+      height:30px;
+      
+    }
+    button:hover{
+      cursor: pointer;
+    }
+
+    .blurred{
+      pointer-events: none;
+      user-select: none;
+      filter:blur(5px);
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFD1DC;
+      color: #2E003E;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-size: 1.2rem;
+      font-weight: bold;
+      z-index: 10;
+      display: none;
+    }
+
+    #btn{
+      margin-left:50px;
+    }
+
+    #timer{
+      margin-left: 1190px;
+    }
+
+    
+
+    
+  </style>
+
+</head>
+<body>
+  <h2 id="timer">15:00</h2>
+  <div class="questions">
+    <p>1. Which keyword is used to define a constant in C++?<br>
+      <input type="radio" name="q0" value="final"> final<br>
+      <input type="radio" name="q0" value="define"> define<br>
+      <input type="radio" name="q0" value="const"> const<br>
+      <input type="radio" name="q0" value="static"> static<br>
+    </p>
+
+    <p>2. Which OOP concept allows function overloading?<br>
+      <input type="radio" name="q1" value="inheritance"> inheritance<br>
+      <input type="radio" name="q1" value="polymorphism"> polymorphism<br>
+      <input type="radio" name="q1" value="abstraction"> abstraction<br>
+      <input type="radio" name="q1" value="encapsulation"> encapsulation<br>
+    </p>
+
+    <p>3. What is the default return type of main()?<br>
+      <input type="radio" name="q2" value="void"> void<br>
+      <input type="radio" name="q2" value="int"> int<br>
+      <input type="radio" name="q2" value="float"> float<br>
+      <input type="radio" name="q2" value="double"> double<br>
+    </p>
+
+    <p>4. Which header file is needed for cout and cin?<br>
+      <input type="radio" name="q3" value="stdlib.h"> stdlib.h<br>
+      <input type="radio" name="q3" value="stdio.h"> stdio.h<br>
+      <input type="radio" name="q3" value="conio.h"> conio.h<br>
+      <input type="radio" name="q3" value="iostream"> iostream<br>
+    </p>
+
+    <p>5. What symbol is used for single-line comments in C++?<br>
+      <input type="radio" name="q4" value="/* */"> /* */<br>
+      <input type="radio" name="q4" value="#"> #<br>
+      <input type="radio" name="q4" value="--"> --<br>
+      <input type="radio" name="q4" value="//"> //<br>
+    </p>
+
+    <p>6. Which operator is used to allocate memory dynamically?<br>
+      <input type="radio" name="q5" value="malloc"> malloc<br>
+      <input type="radio" name="q5" value="new"> new<br>
+      <input type="radio" name="q5" value="alloc"> alloc<br>
+      <input type="radio" name="q5" value="calloc"> calloc<br>
+    </p>
+
+    <p>7. Which feature of C++ allows defining the same function name with different parameters?<br>
+      <input type="radio" name="q6" value="Inheritance"> Inheritance<br>
+      <input type="radio" name="q6" value="Function Overloading"> Function Overloading<br>
+      <input type="radio" name="q6" value="Constructor"> Constructor<br>
+      <input type="radio" name="q6" value="Template"> Template<br>
+    </p>
+
+    <p>8. Which keyword is used to define a class in C++?<br>
+      <input type="radio" name="q7" value="struct"> struct<br>
+      <input type="radio" name="q7" value="Function class"> Function class<br>
+      <input type="radio" name="q7" value="object"> object<br>
+      <input type="radio" name="q7" value="class"> class<br>
+    </p>
+
+    <p>9. Which access specifier makes a class member accessible only within the class?<br>
+      <input type="radio" name="q8" value="public"> public<br>
+      <input type="radio" name="q8" value="protected"> protected<br>
+      <input type="radio" name="q8" value="private"> private<br>
+      <input type="radio" name="q8" value="static"> static<br>
+    </p>
+
+    <p>10. Which of the following is not a valid C++ data type?<br>
+      <input type="radio" name="q9" value="int"> int<br>
+      <input type="radio" name="q9" value="float"> float<br>
+      <input type="radio" name="q9" value="real"> real<br>
+      <input type="radio" name="q9" value="char"> char<br>
+    </p>
+      <button onclick="check()">submit</button>
+      
+      
+
+
+      
+    
+
+  </div>
+  <div class="popup">
+    <p id="result"></p>
+    <button onclick="closee()" id="btn">close</button>
+  </div>
+  <script>
+    const questions = [
+    { question: "Which keyword is used to define a constant in C++?", correctAnswer: "const" },
+    { question: "Which OOP concept allows function overloading?", correctAnswer: "polymorphism" },
+    { question: "What is the default return type of main()?", correctAnswer: "int" },
+    { question: "Which header file is needed for cout and cin?", correctAnswer: "iostream" },
+    { question: "What symbol is used for single-line comments in C++?", correctAnswer: "//" },
+    { question: "Which operator is used to allocate memory dynamically?", correctAnswer: "new" },
+    { question: "Which feature of C++ allows defining the same function name with different parameters?", correctAnswer: "Function Overloading" },
+    { question: "Which keyword is used to define a class in C++?", correctAnswer: "class" },
+    { question: "Which access specifier makes a class member accessible only within the class?", correctAnswer: "private" },
+    { question: "Which of the following is not a valid C++ data type?", correctAnswer: "real" }
+  ];
+
+  function check(){
+    let score=0;
+    var popbox=document.querySelector(".questions")
+    var popup=document.querySelector(".popup")
+
+
+    questions.forEach((question,index)=>{
+      const selected=document.querySelector(`input[name="q${index}"]:checked`);
+
+      if(selected && selected.value==question.correctAnswer){
+        score++
+      }
+    });
+  
+    popbox.classList.add("blurred");
+    popup.style.display="block";
+
+    document.getElementById("result").innerHTML=`Your score is ${score}/10`;
+
+
+  }
+
+  function closee(){
+    var popbox=document.querySelector(".questions")
+    var popup=document.querySelector(".popup")
+    popbox.classList.remove("blurred")
+    popup.style.display="none";
+    
+  }
+
+  let timeleft=15*60
+  var timerdisplay=document.getElementById("timer")
+  const countdown=setInterval(()=>{
+    let minutes=Math.floor(timeleft/60);
+    let seconds=timeleft%60;
+    timerdisplay.textContent=`${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+
+    if(timeleft==0){
+      clearInterval(countdown);
+      check();
+    }
+
+    timeleft--;
+  },1000);
+
+
+  </script>
+  
+</body>
+</html>
